@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .he {
+            background-color: #ff4400;
+            text-align: center;
+            padding: 20px;
+            margin: 25px;
+            font-size: 28px;
+            color: rgb(248, 242, 242);
+        }
+
+        .con {
+            background-color: black;
+            width: fit-content;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .vo {
+            padding: 8px;
+            margin: 20px 0;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        .row {
+            margin: 10px 0;
+        }
+
+        .but {
+            padding: 10px 15px;
+            margin: 4px;
+            background-color: rgb(225, 133, 13);
+            border-radius: 5px;
+            cursor: pointer;
+            color: rgba(11, 11, 12, 0.846);
+            font-size: 16px;
+            border: none;
+        }
+
+        .but:hover {
+            background-color: rgb(255, 165, 0);
+        }
+    </style>
+</head>
+<body>
+    <h1 class="he">Welcome to calcu</h1>
+
+    <div class="con">
+        <div class="inpu">
+            <input type="text" class="vo" readonly>
+        </div>
+
+        <div class="row">
+            <button class="but">C</button>
+            <button class="but">M+</button>
+            <button class="but">M-</button>
+        </div>
+
+        <div class="row">
+            <button class="but">7</button>
+            <button class="but">8</button>
+            <button class="but">9</button>
+            <button class="but">*</button>
+        </div>
+
+        <div class="row">
+            <button class="but">4</button>
+            <button class="but">5</button>
+            <button class="but">6</button>
+            <button class="but">-</button>
+        </div>
+
+        <div class="row">
+            <button class="but">1</button>
+            <button class="but">2</button>
+            <button class="but">3</button>
+            <button class="but">+</button>
+        </div>
+
+        <div class="row">
+            <button class="but">0</button>
+            <button class="but">.</button>
+            <button class="but">=</button>
+            <button class="but">%</button>
+        </div>
+    </div>
+
+    <script>
+        let string = '';
+        let buttons = document.querySelectorAll('.but');
+
+        Array.from(buttons).forEach((button) => {
+            button.addEventListener('click', (e) => {
+                if (e.target.innerHTML == '=') {
+                    try {
+                        string = eval(string);
+                        document.querySelector('input').value = string;
+                    } catch {
+                        document.querySelector('input').value = "Error";
+                        string = '';
+                    }
+                }
+                else if (e.target.innerHTML == 'C') {
+                    string = "";
+                    document.querySelector('input').value = string;
+                }
+                else {
+                    console.log(e.target);
+                    string = string + e.target.innerHTML;
+                    document.querySelector('input').value = string;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
